@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Zewail\Api\Response\Method;
 
 use Zewail\Api\Response\Method\HttpMethod;
@@ -13,7 +13,7 @@ use Zewail\Api\Http\Response;
  */
 class Get extends HttpMethod
 {
-  	/**
+    /**
      * 204 无内容响应
      *
      * @return think\Response
@@ -64,5 +64,4 @@ class Get extends HttpMethod
     {
         $this->error($message, 409);
     }
-
 }

@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Zewail\Api\JWT\Factories\Claims;
 
 /**
@@ -10,14 +10,14 @@ class Claim
 {
     /**
      * name
-     * 
+     *
      * @var string
      */
     protected $name;
 
     /**
      * value
-     * 
+     *
      * @var string
      */
     protected $value;
@@ -72,7 +72,7 @@ class Claim
 
     /**
      * 转为数组
-     * 
+     *
      * @return array
      */
     public function toArray()

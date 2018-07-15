@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Zewail\Api\JWT;
 
 use Zewail\Api\JWT\Factories\Claims\Collection;
@@ -8,7 +8,7 @@ use Zewail\Api\JWT\Factories\Claims\Collection;
  * @license  https://opensource.org/licenses/MIT MIT
  * @link     https://github.com/czewail/think-api
  */
-class Payload 
+class Payload
 {
     private $claims;
 

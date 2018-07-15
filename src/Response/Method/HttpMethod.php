@@ -1,16 +1,16 @@
-<?php 
+<?php
 namespace Zewail\Api\Response\Method;
 
 use Zewail\Api\Exceptions\ResponseException;
 use Zewail\Api\Http\Response;
 
 /**
-* 
+*
 */
 class HttpMethod
 {
-	
-	/**
+    
+    /**
      * 错误响应
      *
      * @param string 错误信息
@@ -25,7 +25,7 @@ class HttpMethod
         throw new ResponseException($statusCode, $message);
     }
 
-	/**
+    /**
      * 301 资源的URI已更改
      *
      * @param string $message
@@ -34,14 +34,14 @@ class HttpMethod
      *
      * @return void
      */
-	public function movedPermanently($message = 'Moved Permanently')
-	{
-		$response = new Response($message);
+    public function movedPermanently($message = 'Moved Permanently')
+    {
+        $response = new Response($message);
         $response->setCode(301);
         return $response;
-	}
+    }
 
-	/**
+    /**
      * 303 其他，如负载均衡
      *
      * @param string $message
@@ -50,14 +50,14 @@ class HttpMethod
      *
      * @return void
      */
-	public function seeOther($message = 'See Other')
-	{
-		$response = new Response($message);
+    public function seeOther($message = 'See Other')
+    {
+        $response = new Response($message);
         $response->setCode(303);
         return $response;
-	}
-	
-	/**
+    }
+    
+    /**
      * 400 请求错误响应
      *
      * @param string $message
@@ -111,9 +111,5 @@ class HttpMethod
     public function errorInternal($message = 'Internal Error')
     {
         $this->error($message, 500);
-    } 
-
-
-
-
+    }
 }

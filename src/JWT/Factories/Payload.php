@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Zewail\Api\JWT\Factories;
 
 use Zewail\Api\JWT\Factories\Claims\Audience;
@@ -60,7 +60,7 @@ class Payload
 
     /**
      * Issuer
-     * 
+     *
      * @return url
      */
     public function iss()
@@ -70,7 +70,7 @@ class Payload
 
     /**
      * IssuedAt
-     * 
+     *
      * @return Timestamp
      */
     public function iat()
@@ -82,7 +82,7 @@ class Payload
 
     /**
      * Expiration
-     * 
+     *
      * @return Timestamp
      */
     public function exp()
@@ -94,7 +94,7 @@ class Payload
 
     /**
      * NotBefore
-     * 
+     *
      * @return Timestamp
      */
     public function nbf()
@@ -105,7 +105,7 @@ class Payload
 
     /**
      * JwtId
-     * 
+     *
      * @return string
      */
     public function jti()
@@ -131,6 +131,4 @@ class Payload
     {
         return $this->ttl;
     }
-
-
 }

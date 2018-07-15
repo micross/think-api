@@ -30,7 +30,7 @@ class Code
     protected $algorithm = 'HS256';
 
     // 默认hash_hmac加密私钥
-    protected $key; 
+    protected $key;
 
     // 默认openssl加密私钥路径
     protected $privateKeyPath;
@@ -45,7 +45,7 @@ class Code
     protected $deviation = 0;
 
 
-    function __construct()
+    public function __construct()
     {
         $this->init();
     }
@@ -55,7 +55,7 @@ class Code
      */
     protected function init()
     {
-        Set::api(function($config) {
+        Set::api(function ($config) {
             $this->config = $config;
         });
 
@@ -104,7 +104,9 @@ class Code
                 $this->key = $this->publicKey;
             }
         }
-        if ($algorithm) $this->algorithm = $algorithm;
+        if ($algorithm) {
+            $this->algorithm = $algorithm;
+        }
 
         $segments = explode('.', $token);
 
@@ -149,7 +151,9 @@ class Code
                 $this->key = $this->privateKey;
             }
         }
-        if ($algorithm) $this->algorithm = $algorithm;
+        if ($algorithm) {
+            $this->algorithm = $algorithm;
+        }
 
         $header = ['typ' => 'JWT', 'alg' => $this->algorithm];
         $segments = [];
@@ -178,7 +182,7 @@ class Code
     {
         list($func, $alg) = $this->algorithms[$this->algorithm];
 
-        switch($func) {
+        switch ($func) {
         // hash_hmac 加密
             case 'hash':
                 return hash_hmac($alg, $data, $this->key, true);
@@ -197,7 +201,7 @@ class Code
     {
         list($func, $alg) = $this->algorithms[$this->algorithm];
 
-        switch($func) {
+        switch ($func) {
             case 'hash':
                 $hash = hash_hmac($alg, $data, $this->key, true);
                 return hash_equals($signature, $hash);
@@ -211,5 +215,3 @@ class Code
         return false;
     }
 }
-
-

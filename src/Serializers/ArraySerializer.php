@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Zewail\Api\Serializers;
 
 use Zewail\Api\Serializers\Serializer;
@@ -13,7 +13,7 @@ class ArraySerializer extends Serializer
 
     protected $content;
 
-    function __construct($content, $meta = [], $adds = [])
+    public function __construct($content, $meta = [], $adds = [])
     {
         $this->content = $content;
         $this->setContent();

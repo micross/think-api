@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Zewail\Api;
 
 use Zewail\Api\Response\Factory as ResponseFactory;
@@ -16,12 +16,13 @@ trait Api
     protected $response;
     protected $jwt;
 
-    function __construct()
+    public function __construct()
     {
         $this->init();
     }
 
-    protected function init() {
+    protected function init()
+    {
         $this->response = new ResponseFactory;
         $this->jwt = new JWTFactory;
     }

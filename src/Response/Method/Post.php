@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Zewail\Api\Response\Method;
 
 use Zewail\Api\Response\Method\HttpMethod;
@@ -13,7 +13,7 @@ use Zewail\Api\Http\Response;
  */
 class Post extends HttpMethod
 {
-  	/**
+    /**
      * 201 创建了资源的响应
      *
      * @param  资源响应位置
@@ -30,7 +30,7 @@ class Post extends HttpMethod
         return $response;
     }
     
-  	/**
+    /**
      * 202 已接受处理请求但尚未完成（异步处理）
      *
      * @param  资源响应位置
@@ -99,5 +99,4 @@ class Post extends HttpMethod
     {
         $this->error($message, 415);
     }
-
 }

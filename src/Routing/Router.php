@@ -21,16 +21,16 @@ class Router
 
     public function __construct()
     {
-        Set::api(function($config) {
+        Set::api(function ($config) {
             $this->config = $config;
         });
     }
 
     /**
      * 创建版本
-     * 
+     *
      * @param  [type]  $version
-     * @param  Closure $routes 
+     * @param  Closure $routes
      */
     public function version($version = null, Closure $routes)
     {
@@ -45,13 +45,13 @@ class Router
         $_version = Request::header('Api-Version') ?: Request::param('version');
 
         if (!empty($_version)) {
-            if (in_array($_version, self::$versions) ) {
+            if (in_array($_version, self::$versions)) {
                 call_user_func_array($routes, []);
             }
         } else {
             if ($this->config['version']) {
                 $default_version = $this->config['version'];
-                if (in_array($default_version, self::$versions) ) {
+                if (in_array($default_version, self::$versions)) {
                     call_user_func_array($routes, []);
                 }
             }

@@ -14,5 +14,4 @@ class Expiration extends Claim
      * Name
      */
     protected $name = 'exp';
-
 }

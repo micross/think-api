@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Zewail\Api\Response\Method;
 
 use Zewail\Api\Response\Method\HttpMethod;
@@ -13,18 +13,18 @@ use Zewail\Api\Http\Response;
  */
 class Patch extends HttpMethod
 {
-	/**
-	 * 200 资源已更新
-	 * 
-	 * @param  string
-	 * @return [type]
-	 */
-	public function updated($message = 'Updated')
-	{
-		$response = new Response($message);
+    /**
+     * 200 资源已更新
+     *
+     * @param  string
+     * @return [type]
+     */
+    public function updated($message = 'Updated')
+    {
+        $response = new Response($message);
         $response->setCode(200);
         return $response;
-	}
+    }
 
      /**
      * 406 服务端不支持所需表示
@@ -54,7 +54,7 @@ class Patch extends HttpMethod
         $this->error($message, 409);
     }
 
-	/**
+    /**
      * 412 前置条件失败（如执行条件更新时的冲突）
      *
      * @param string $message
@@ -81,7 +81,4 @@ class Patch extends HttpMethod
     {
         $this->error($message, 415);
     }
-
-
-
 }

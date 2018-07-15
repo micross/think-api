@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Zewail\Api\Response;
 
 use Zewail\Api\Http\Response;
@@ -15,7 +15,6 @@ use Zewail\Api\Response\Method\Get as HttpGet;
 use Zewail\Api\Response\Method\Patch as HttpPatch;
 use Zewail\Api\Response\Method\Post as HttpPost;
 use Zewail\Api\Response\Method\Put as HttpPut;
-
 
 /**
  * @author   Chan Zewail <chanzewail@gmail.com>
@@ -45,7 +44,7 @@ class Factory
     // 构造方法
     public function __construct()
     {
-        Set::resources(function($config) {
+        Set::resources(function ($config) {
             $this->resources = $config;
         });
     }
@@ -66,7 +65,7 @@ class Factory
         if ($filter) {
             if (is_array($filter)) {
                 $result = array_intersect_key($item_array, array_flip($filter));
-            } else if(is_string($filter)) {
+            } elseif (is_string($filter)) {
                 if (is_array($this->resources) && !empty($this->resources[$filter]) && array_key_exists($filter, $this->resources)) {
                     $result = array_intersect_key($item_array, array_flip($this->resources[$filter]));
                 }
@@ -74,21 +73,21 @@ class Factory
         } else {
             if (is_array($this->only)) {
                 $result = array_intersect_key($item_array, array_flip($this->only));
-            } else if (is_string($this->only)) {
+            } elseif (is_string($this->only)) {
                 if (is_array($this->resources) && !empty($this->resources[$this->only]) && array_key_exists($this->only, $this->resources)) {
                     $result = array_intersect_key($item_array, array_flip($this->resources[$this->only]));
                 }
             }
             if (is_array($this->except)) {
                 $result = array_diff_key($result, array_flip($this->except));
-            } else if (is_string($this->except)) {
+            } elseif (is_string($this->except)) {
                 if (is_array($this->resources) && !empty($this->resources[$this->except]) && array_key_exists($this->except, $this->resources)) {
                     $result = array_diff_key($result, array_flip($this->resources[$this->except]));
                 }
             }
         }
         return $result;
-   	}
+    }
 
     /**
      * 调用http method 详细响应
@@ -149,10 +148,10 @@ class Factory
 
     /**
      * 单个模型的响应
-     * 
+     *
      * @param  think\Model
      * @param  $filter
-     * @return Zewail\Api\Http\Response    
+     * @return Zewail\Api\Http\Response
      */
     public function item($item, $filter = null)
     {
@@ -175,13 +174,13 @@ class Factory
     public function collection($collection, $filter = null)
     {
         if (is_array($collection)) {
-            $response = array_map(function($item) use ($filter) {
+            $response = array_map(function ($item) use ($filter) {
                 return $this->filterItem($item, $filter);
             }, $collection);
             return new Response($response);
-        } else if ($collection instanceof ModelCollection) {
+        } elseif ($collection instanceof ModelCollection) {
             $response = [];
-            $collection->each(function($item) use ($filter, &$response) {
+            $collection->each(function ($item) use ($filter, &$response) {
                 $response[] = $this->filterItem($item, $filter);
             });
             return new Response($response);
@@ -191,15 +190,15 @@ class Factory
 
     /**
      * 分页模型的响应
-     * 
-     * @param  $collection 
+     *
+     * @param  $collection
      * @param  $filter
-     * @return 
+     * @return
      */
     public function paginator($collection, $filter = null)
     {
         if (is_array($collection->items())) {
-            $response = array_map(function($item) use ($filter) {
+            $response = array_map(function ($item) use ($filter) {
                 return $this->filterItem($item, $filter);
             }, $collection->items());
 
@@ -398,7 +397,7 @@ class Factory
     public function errorInternal($message = 'Internal Error')
     {
         $this->error($message, 500);
-    }  
+    }
 
     /**
      * 503 服务当前无法处理请求错误响应
@@ -418,5 +417,4 @@ class Factory
     // {
     //     return $this->response;
     // }
-
 }

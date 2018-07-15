@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Zewail\Api\Response\Method;
 
 use Zewail\Api\Response\Method\HttpMethod;
@@ -13,18 +13,18 @@ use Zewail\Api\Http\Response;
  */
 class Delete extends HttpMethod
 {
-	/**
-	 * 200 资源已删除
-	 * 
-	 * @param  string
-	 * @return [type]
-	 */
-	public function deleted($message = 'Deleted')
-	{
-		$response = new Response($message);
+    /**
+     * 200 资源已删除
+     *
+     * @param  string
+     * @return [type]
+     */
+    public function deleted($message = 'Deleted')
+    {
+        $response = new Response($message);
         $response->setCode(200);
         return $response;
-	}
+    }
 
 
     /**
@@ -40,10 +40,4 @@ class Delete extends HttpMethod
     {
         $this->error($message, 409);
     }
-
-
-
-
-
-
 }

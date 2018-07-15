@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Zewail\Api\Setting;
 
 use Config;

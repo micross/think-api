@@ -36,9 +36,9 @@ class Factory
     protected $config = [];
 
 
-    function __construct()
+    public function __construct()
     {
-        Set::jwt(function($config) {
+        Set::jwt(function ($config) {
             $this->config = $config;
         });
         $this->PayloadFactory = new PayloadFactory($this->config);
@@ -163,12 +163,12 @@ class Factory
     {
         if ($Authorization = Request::header('Authorization')) {
             $authArr = explode(' ', $Authorization);
-            if ( isset($authArr[0]) && $authArr[0] === 'Bearer') {
+            if (isset($authArr[0]) && $authArr[0] === 'Bearer') {
                 if (isset($authArr[1])) {
                     return $authArr[1];
                 }
             }
-        } else if (Request::has('token')) {
+        } elseif (Request::has('token')) {
             return Request::get('token');
         }
         return false;
@@ -230,5 +230,3 @@ class Factory
         return $this;
     }
 }
-
-

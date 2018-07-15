@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Zewail\Api\JWT\Factories\Claims;
 
 use think\Collection as ThinkCollection;

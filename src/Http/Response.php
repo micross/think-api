@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Zewail\Api\Http;
 
 use think\response\Json as JsonResponse;
@@ -15,14 +15,14 @@ class Response extends JsonResponse
 {
     /**
      * 附加 meta 信息
-     * 
+     *
      * @var array
      */
     private $meta = [];
 
     /**
      * 其他附加信息集合
-     * 
+     *
      * @var array
      */
     private $adds = [];
@@ -50,10 +50,10 @@ class Response extends JsonResponse
 
     /**
      * [__construct]
-     * 
+     *
      * @param string  $content
-     * @param integer $code   
-     * @param array   $header 
+     * @param integer $code
+     * @param array   $header
      */
     public function __construct($content = '', $code = 200, array $header = [])
     {
@@ -76,19 +76,23 @@ class Response extends JsonResponse
 
     /**
      * 处理数据
-     * 
+     *
      * @param  $data
      * @return think\response\Json
      */
     protected function output($data)
     {
         $serializer = new $this->serializer($data, $this->meta, $this->adds);
-        return parent::output($serializer->get());
+        $serialized_data = $serializer->get();
+        if (is_null($serialized_data)) {
+            return;
+        }
+        return parent::output($serialized_data);
     }
 
     /**
      * 设置 serializer
-     * 
+     *
      * @param  [type]
      * @return [type]
      */
@@ -113,9 +117,9 @@ class Response extends JsonResponse
 
     /**
      * 添加 Meta 信息
-     * 
-     * @param string $name  
-     * @param string $value 
+     *
+     * @param string $name
+     * @param string $value
      */
     public function addMeta($name, $value = '')
     {
@@ -125,8 +129,8 @@ class Response extends JsonResponse
 
     /**
      * 批量设置 Meta 信息
-     * 
-     * @param array $meta  
+     *
+     * @param array $meta
      */
     public function setMeta(array $meta = [])
     {
@@ -136,17 +140,18 @@ class Response extends JsonResponse
 
     /**
      * 设置 respone 的头部信息
-     * 
-     * @param [string] $name  
+     *
+     * @param [string] $name
      * @param [mixed] $value
      */
-    public function addHeader($name, $value = null) {
+    public function addHeader($name, $value = null)
+    {
         return $this->header($name, $value);
     }
 
     /**
      * 设置状态码
-     * 
+     *
      * @param [number] $code
      */
     public function setCode($code)
@@ -156,7 +161,7 @@ class Response extends JsonResponse
 
     /**
      * LastModified
-     * 
+     *
      * @param [time] $time
      */
     public function setLastModified($time)
@@ -166,7 +171,7 @@ class Response extends JsonResponse
 
     /**
      * ETag
-     * 
+     *
      * @param [type] $eTag
      */
     public function setETag($eTag)
@@ -176,7 +181,7 @@ class Response extends JsonResponse
 
     /**
      * expires
-     * 
+     *
      * @param [type] $time
      */
     public function setExpires($time)
@@ -196,8 +201,8 @@ class Response extends JsonResponse
 
     /**
      * 页面输出类型
-     * 
-     * @param string $contentType 
+     *
+     * @param string $contentType
      * @param string $charset
      * @return $this
      */
@@ -205,6 +210,4 @@ class Response extends JsonResponse
     {
         return $this->contentType($contentType, $charset);
     }
-
-
 }

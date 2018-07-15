@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Zewail\Api\Exceptions;
 
 use think\exception\Handle;
@@ -10,12 +10,12 @@ use Exception;
 * @license  https://opensource.org/licenses/MIT MIT
 * @link     https://github.com/czewail/think-api
 */
-class handleException extends Handle
+class HandleException extends Handle
 {
     /**
     * render
     */
-    public function render(Exception $e) 
+    public function render(Exception $e)
     {
 
         // Token 授权失败的异常
@@ -33,5 +33,5 @@ class handleException extends Handle
         }
         // 其他错误交给系统处理
         return parent::render($e);
-    }	
+    }
 }

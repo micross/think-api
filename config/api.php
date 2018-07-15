@@ -1,4 +1,4 @@
-<?php 
+<?php
 return [
     // api 默认版本号
     'version' => 'v1',
